@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio of Terence Musa Dlamini — Computer Science graduate, IT specialist, and aspiring web developer." />
+    <title>Terence Musa Dlamini - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        accent: '#ffdb70',
+                        darkBg: '#111111',
+                        cardBg: '#1e1e1f',
+                        cardBorder: '#383838'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #111111; color: #d6d6d6; }
+        .nav-btn.active { color: #ffdb70; }
+        .tab-content { display: none; animation: fadeIn 0.5s ease; }
+        .tab-content.active { display: block; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #111111; }
+        ::-webkit-scrollbar-thumb { background: #383838; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #ffdb70; }
+    </style>
+</head>
+<body class="min-h-screen flex justify-center py-10 px-4 md:px-10">
+
+    <div class="max-w-6xl w-full flex flex-col lg:flex-row gap-6 relative">
+
+        <!-- Sidebar / Profile Card -->
+        <aside class="lg:w-1/3 xl:w-1/4 bg-cardBg border border-cardBorder rounded-3xl p-6 lg:sticky lg:top-10 h-fit shadow-xl z-20">
+            <div class="flex flex-col items-center text-center">
+                <div class="w-32 h-32 rounded-2xl bg-neutral-800 border border-cardBorder mb-4 overflow-hidden flex items-center justify-center">
+                    <img src="profile.png" alt="Terence Musa Dlamini" onerror="this.src='https://placehold.co/150x150/2a2a2a/ffdb70?text=TD'" class="w-full h-full object-cover">
+                </div>
+                <h1 class="text-white text-2xl font-bold mb-2">Terence Musa Dlamini</h1>
+                <div class="flex flex-wrap justify-center gap-2 mb-6">
+                    <span class="bg-neutral-800 text-xs px-3 py-1 rounded-md text-gray-300">Web Dev</span>
+                    <span class="bg-neutral-800 text-xs px-3 py-1 rounded-md text-gray-300">IT Support</span>
+                    <span class="bg-neutral-800 text-xs px-3 py-1 rounded-md text-gray-300">Cybersecurity</span>
+                </div>
+                
+                <hr class="w-full border-cardBorder mb-6">
+                
+                <div class="w-full space-y-4 mb-8">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-lg bg-neutral-800 border border-cardBorder flex items-center justify-center text-accent shrink-0">
+                            <i class="fa-regular fa-envelope"></i>
+                        </div>
+                        <div class="text-left overflow-hidden">
+                            <p class="text-xs text-gray-400 uppercase">Email</p>
+                            <a href="mailto:terence.musa.dlamini@gmail.com" class="text-sm text-gray-200 hover:text-accent truncate block">terence.musa.dlamini...</a>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-lg bg-neutral-800 border border-cardBorder flex items-center justify-center text-accent shrink-0">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <div class="text-left">
+                            <p class="text-xs text-gray-400 uppercase">Location</p>
+                            <p class="text-sm text-gray-200">South Africa</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex gap-4 mb-6">
+                    <a href="https://github.com/HWMeTM" target="_blank" class="text-gray-400 hover:text-accent transition-colors text-xl">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/terencedlamini/" target="_blank" class="text-gray-400 hover:text-accent transition-colors text-xl">
+                        <i class="fa-brands fa-linkedin"></i>
+                    </a>
+                </div>
+
+                <a href="Terence Musa Dlamini.pdf" target="_blank" download class="w-full block text-center bg-neutral-800 hover:bg-neutral-700 text-white font-medium py-3 rounded-xl border border-cardBorder transition-colors shadow-sm">
+                    <i class="fa-solid fa-download mr-2"></i> Download Resume
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="lg:w-2/3 xl:w-3/4 bg-cardBg border border-cardBorder rounded-3xl relative overflow-hidden shadow-xl min-h-[600px]">
+            
+            <!-- Top Navigation -->
+            <nav class="absolute top-0 right-0 bg-neutral-800/80 backdrop-blur-md border-b border-l border-cardBorder rounded-bl-3xl rounded-tr-3xl z-10 hidden md:block">
+                <ul class="flex px-8 py-4 gap-8 font-medium text-gray-300 text-sm">
+                    <li><button onclick="switchTab('about')" id="nav-about" class="nav-btn active hover:text-accent transition-colors">About</button></li>
+                    <li><button onclick="switchTab('resume')" id="nav-resume" class="nav-btn hover:text-accent transition-colors">Resume</button></li>
+                    <li><button onclick="switchTab('projects')" id="nav-projects" class="nav-btn hover:text-accent transition-colors">Projects</button></li>
+                    <li><button onclick="switchTab('contact')" id="nav-contact" class="nav-btn hover:text-accent transition-colors">Contact</button></li>
+                </ul>
+            </nav>
+
+            <!-- Mobile Navigation -->
+            <nav class="md:hidden bg-neutral-800 border-b border-cardBorder rounded-t-3xl p-4 flex justify-between overflow-x-auto">
+                <button onclick="switchTab('about')" id="nav-about-mobile" class="nav-btn active hover:text-accent transition-colors px-2 text-sm">About</button>
+                <button onclick="switchTab('resume')" id="nav-resume-mobile" class="nav-btn hover:text-accent transition-colors px-2 text-sm">Resume</button>
+                <button onclick="switchTab('projects')" id="nav-projects-mobile" class="nav-btn hover:text-accent transition-colors px-2 text-sm">Projects</button>
+                <button onclick="switchTab('contact')" id="nav-contact-mobile" class="nav-btn hover:text-accent transition-colors px-2 text-sm">Contact</button>
+            </nav>
+
+            <div class="p-6 md:p-10 md:pt-24 h-full">
+
+                <!-- ABOUT SECTION -->
+                <section id="about" class="tab-content active">
+                    <h2 class="text-3xl text-white font-bold mb-6 flex items-center gap-4">
+                        About Me
+                        <div class="h-1 w-12 bg-accent rounded-full"></div>
+                    </h2>
+                    
+                    <div class="text-gray-300 space-y-4 mb-10 leading-relaxed">
+                        <p>
+                            I am a Computer Science graduate with hands-on experience in IT support, currently transitioning into cyber security and web development. I recently wrapped up an internship where I handled the practical, day-to-day work of keeping a campus running—setting up workstations, troubleshooting network connectivity, and fixing hardware.
+                        </p>
+                        <p>
+                            While I enjoyed resolving user issues, I realized my real passion lies in securing systems and understanding how they work under the hood. Lately, I've been spending my time diving deep into practical cybersecurity. Had a 324-day streak on TryHackMe and building my own web applications.
+                        </p>
+                        <p>
+                            I'm currently looking for an entry-level or associate role where I can step out of general IT support, apply my coding and security knowledge daily, and learn production-level standards from an experienced team.
+                        </p>
+                    </div>
+
+                    <h3 class="text-2xl text-white font-semibold mb-6">What I'm Doing</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-neutral-800 border border-cardBorder rounded-2xl p-6 shadow-sm">
+                            <div class="flex gap-4">
+                                <i class="fa-solid fa-user-shield text-4xl text-accent"></i>
+                                <div>
+                                    <h4 class="text-white font-semibold mb-2">Cybersecurity Basics</h4>
+                                    <p class="text-sm text-gray-400">Practical cybersecurity training through TryHackMe, exploring threat landscapes, and holding the Google Cybersecurity Certificate.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-800 border border-cardBorder rounded-2xl p-6 shadow-sm">
+                            <div class="flex gap-4">
+                                <i class="fa-solid fa-laptop-code text-4xl text-accent"></i>
+                                <div>
+                                    <h4 class="text-white font-semibold mb-2">Continuous Learning</h4>
+                                    <p class="text-sm text-gray-400">Transitioning academic programming knowledge (Python, Java, C++) into practical, real-world projects.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- RESUME SECTION -->
+                <section id="resume" class="tab-content">
+                    <h2 class="text-3xl text-white font-bold mb-6 flex items-center gap-4">
+                        Resume
+                        <div class="h-1 w-12 bg-accent rounded-full"></div>
+                    </h2>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mb-12">
+                        <!-- Education -->
+                        <div>
+                            <div class="flex items-center gap-4 mb-6">
+                                <div class="w-10 h-10 rounded-lg bg-neutral-800 border border-cardBorder flex items-center justify-center text-accent">
+                                    <i class="fa-solid fa-book-open"></i>
+                                </div>
+                                <h3 class="text-2xl text-white font-semibold">Education</h3>
+                            </div>
+                            <div class="border-l border-cardBorder ml-5 pl-6 relative space-y-8">
+                                <div class="relative">
+                                    <div class="absolute -left-[31px] top-1 w-3 h-3 bg-accent rounded-full border-4 border-cardBg shadow-[0_0_0_3px_#383838]"></div>
+                                    <h4 class="text-white font-medium">Advanced Diploma in Computer Science</h4>
+                                    <p class="text-accent text-sm mb-2">Tshwane University of Technology</p>
+                                </div>
+                                <div class="relative">
+                                    <div class="absolute -left-[31px] top-1 w-3 h-3 bg-accent rounded-full border-4 border-cardBg shadow-[0_0_0_3px_#383838]"></div>
+                                    <h4 class="text-white font-medium">National Diploma in Information Technology</h4>
+                                    <p class="text-accent text-sm mb-2">Tshwane University of Technology</p>
+                                </div>
+                                <div class="relative">
+                                    <div class="absolute -left-[31px] top-1 w-3 h-3 bg-accent rounded-full border-4 border-cardBg shadow-[0_0_0_3px_#383838]"></div>
+                                    <h4 class="text-white font-medium">Certifications & Training</h4>
+                                    <ul class="text-gray-400 text-sm list-disc ml-4 mt-2 space-y-1">
+                                        <li>Google Cybersecurity Professional Certificate</li>
+                                        <li>Google IT Support Professional Certificate</li>
+                                        <li>TryHackMe — Active Learner (324-Day Streak)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Experience -->
+                        <div>
+                            <div class="flex items-center gap-4 mb-6">
+                                <div class="w-10 h-10 rounded-lg bg-neutral-800 border border-cardBorder flex items-center justify-center text-accent">
+                                    <i class="fa-solid fa-briefcase"></i>
+                                </div>
+                                <h3 class="text-2xl text-white font-semibold">Experience</h3>
+                            </div>
+                            <div class="border-l border-cardBorder ml-5 pl-6 relative space-y-8">
+                                <div class="relative">
+                                    <div class="absolute -left-[31px] top-1 w-3 h-3 bg-accent rounded-full border-4 border-cardBg shadow-[0_0_0_3px_#383838]"></div>
+                                    <h4 class="text-white font-medium">IT Support Intern</h4>
+                                    <p class="text-accent text-sm mb-2">North West CET College | April 2024 – March 2025</p>
+                                    <ul class="text-gray-400 text-sm leading-relaxed list-disc ml-4 space-y-2">
+                                        <li>Provided day-to-day technical support for staff and students, diagnosing and fixing hardware and Windows OS issues.</li>
+                                        <li>Set up and configured new workstations, installed required software packages, and applied routine system updates.</li>
+                                        <li>Troubleshot local network connectivity problems including LAN cabling, Wi-Fi, and IP configuration issues.</li>
+                                        <li>Maintained and repaired shared office printers, scanners, and peripherals.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cleaned Up Skills Matrix -->
+                    <div class="mb-6">
+                        <h3 class="text-2xl text-white font-semibold mb-6 flex items-center gap-3">
+                            <i class="fa-solid fa-layer-group text-accent text-xl"></i>
+                            Skills & Toolset
+                        </h3>
+                        
+                        <div class="space-y-8">
+                            
+                            <!-- Development & Programming Group -->
+                            <div class="bg-neutral-800 border border-cardBorder rounded-2xl p-6">
+                                <h4 class="text-lg text-white font-medium mb-4 pb-2 border-b border-cardBorder">Software Development</h4>
+                                <div class="space-y-5">
+                                    <!-- Web Tech -->
+                                    <div>
+                                        <h5 class="text-sm text-gray-300 font-semibold mb-2">Web Technologies</h5>
+                                        <div class="flex flex-wrap gap-2">
+                                            <span class="bg-neutral-700/50 text-gray-200 px-3 py-1.5 rounded-lg text-sm border border-neutral-600">JavaScript (ES6+)</span>
+                                            <span class="bg-neutral-700/50 text-gray-200 px-3 py-1.5 rounded-lg text-sm border border-neutral-600">HTML5</span>
+                                            <span class="bg-neutral-700/50 text-gray-200 px-3 py-1.5 rounded-lg text-sm border border-neutral-600">CSS3</span>
+                                            <span class="bg-neutral-700/50 text-gray-200 px-3 py-1.5 rounded-lg text-sm border border-neutral-600">DOM Manipulation</span>
+                                            <span class="bg-neutral-700/50 text-gray-200 px-3 py-1.5 rounded-lg text-sm border border-neutral-600">REST APIs (Fetch)</span>
+                                            <span class="bg-neutral-700/50 text-gray-200 px-3 py-1.5 rounded-lg text-sm border border-neutral-600">JSON</span>
+                                            <span class="bg-neutral-700/50 text-gray-200 px-3 py-1.5 rounded-lg text-sm border border-neutral-600">LocalStorage</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Foundational Programming -->
+                                    <div>
+                                        <h5 class="text-sm text-gray-300 font-semibold mb-2">Foundational Programming & Data</h5>
+                                        <div class="flex flex-wrap gap-2">
+                                            <span class="bg-neutral-700/50 text-gray-200 px-3 py-1.5 rounded-lg text-sm border border-neutral-600">Python</span>
+                                            <span class="bg-neutral-700/50 text-gray-200 px-3 py-1.5 rounded-lg text-sm border border-neutral-600">Java</span>
+                                            <span class="bg-neutral-700/50 text-gray-200 px-3 py-1.5 rounded-lg text-sm border border-neutral-600">C++</span>
+                                            <span class="bg-neutral-700/50 text-gray-200 px-3 py-1.5 rounded-lg text-sm border border-neutral-600">SQL</span>
+                                            <span class="bg-neutral-700/50 text-gray-200 px-3 py-1.5 rounded-lg text-sm border border-neutral-600">OOP Concepts</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Tools -->
+                                    <div>
+                                        <h5 class="text-sm text-gray-300 font-semibold mb-2">Developer Tools</h5>
+                                        <div class="flex flex-wrap gap-2">
+                                            <span class="bg-neutral-700/50 text-gray-200 px-3 py-1.5 rounded-lg text-sm border border-neutral-600">Git & GitHub</span>
+                                            <span class="bg-neutral-700/50 text-gray-200 px-3 py-1.5 rounded-lg text-sm border border-neutral-600">VS Code</span>
+                                            <span class="bg-neutral-700/50 text-gray-200 px-3 py-1.5 rounded-lg text-sm border border-neutral-600">Chrome DevTools</span>
+                                            <span class="bg-neutral-700/50 text-gray-200 px-3 py-1.5 rounded-lg text-sm border border-neutral-600">Linux CLI Basics</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <!-- IT Support Skills Group -->
+                                <div class="bg-neutral-800 border border-cardBorder rounded-2xl p-6">
+                                    <h4 class="text-lg text-white font-medium mb-4 pb-2 border-b border-cardBorder">IT Support Skills</h4>
+                                    <ul class="space-y-3 text-sm text-gray-300">
+                                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent"></i> Windows OS Troubleshooting</li>
+                                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent"></i> Workstation & Hardware Setup</li>
+                                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent"></i> Printer & Peripheral Maintenance</li>
+                                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent"></i> Local Network Diagnostics (TCP/IP)</li>
+                                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent"></i> DNS, DHCP, & Wi-Fi Troubleshooting</li>
+                                    </ul>
+                                </div>
+
+                                <!-- Soft Skills Group -->
+                                <div class="bg-neutral-800 border border-cardBorder rounded-2xl p-6">
+                                    <h4 class="text-lg text-white font-medium mb-4 pb-2 border-b border-cardBorder">Professional Skills</h4>
+                                    <ul class="space-y-3 text-sm text-gray-300">
+                                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent"></i> End-User Technical Support</li>
+                                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent"></i> Independent Problem Solving</li>
+                                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent"></i> Researching Technical Documentation</li>
+                                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent"></i> Clear Issue Logging & Reporting</li>
+                                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent"></i> Adaptability & Continuous Learning</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+
+                <!-- PROJECTS SECTION -->
+                <section id="projects" class="tab-content">
+                    <h2 class="text-3xl text-white font-bold mb-6 flex items-center gap-4">
+                        Projects
+                        <div class="h-1 w-12 bg-accent rounded-full"></div>
+                    </h2>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        
+                        <!-- Project: NIST Vulnerability Scanner -->
+                        <div class="bg-neutral-800 border border-cardBorder rounded-2xl overflow-hidden group hover:border-accent transition-colors flex flex-col">
+                            <div class="h-40 bg-neutral-700 flex items-center justify-center text-4xl text-neutral-500 group-hover:text-accent transition-colors relative">
+                                <i class="fa-solid fa-shield-virus"></i>
+                            </div>
+                            <div class="p-6 flex flex-col flex-grow">
+                                <h4 class="text-white font-semibold mb-2 text-lg">NIST Vulnerability Scanner</h4>
+                                <p class="text-sm text-gray-400 mb-4 flex-grow">A front-end web tool that fetches and parses JSON data from the public NIST National Vulnerability Database (NVD) REST API to look up known software CVEs.</p>
+                                <div class="flex gap-3 mt-auto">
+                                    <a href="https://hwmetm.github.io/NIST-Software-Vulnerability-Scanner/" target="_blank" class="flex-1 text-center bg-neutral-700 hover:bg-neutral-600 text-white text-sm py-2 rounded-lg transition-colors"><i class="fa-solid fa-eye mr-2"></i>Live Demo</a>
+                                    <a href="https://github.com/HWMeTM/NIST-Software-Vulnerability-Scanner" target="_blank" class="flex-1 text-center border border-cardBorder hover:border-accent text-gray-300 hover:text-accent text-sm py-2 rounded-lg transition-colors"><i class="fa-brands fa-github mr-2"></i>Code</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project: Business Finder -->
+                        <div class="bg-neutral-800 border border-cardBorder rounded-2xl overflow-hidden group hover:border-accent transition-colors flex flex-col">
+                            <div class="h-40 bg-neutral-700 flex items-center justify-center text-4xl text-neutral-500 group-hover:text-accent transition-colors relative">
+                                <i class="fa-solid fa-magnifying-glass-location"></i>
+                            </div>
+                            <div class="p-6 flex flex-col flex-grow">
+                                <h4 class="text-white font-semibold mb-2 text-lg">Business Finder Web App</h4>
+                                <p class="text-sm text-gray-400 mb-4 flex-grow">A single-page application that queries the Google Places API to search for local businesses, featuring a custom JavaScript export to CSV function.</p>
+                                <div class="flex gap-3 mt-auto">
+                                    <a href="https://hwmetm.github.io/Business-finder/" target="_blank" class="flex-1 text-center bg-neutral-700 hover:bg-neutral-600 text-white text-sm py-2 rounded-lg transition-colors"><i class="fa-solid fa-eye mr-2"></i>Live Demo</a>
+                                    <a href="https://github.com/HWMeTM/Business-finder/tree/main" target="_blank" class="flex-1 text-center border border-cardBorder hover:border-accent text-gray-300 hover:text-accent text-sm py-2 rounded-lg transition-colors"><i class="fa-brands fa-github mr-2"></i>Code</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project: Notes Extension -->
+                        <div class="bg-neutral-800 border border-cardBorder rounded-2xl overflow-hidden group hover:border-accent transition-colors flex flex-col">
+                            <div class="h-40 bg-neutral-700 flex items-center justify-center text-4xl text-neutral-500 group-hover:text-accent transition-colors relative">
+                                <i class="fa-solid fa-note-sticky"></i>
+                            </div>
+                            <div class="p-6 flex flex-col flex-grow">
+                                <h4 class="text-white font-semibold mb-2 text-lg">Browser Notes Extension</h4>
+                                <p class="text-sm text-gray-400 mb-4 flex-grow">A lightweight Chrome extension built with vanilla JavaScript and DOM manipulation, using browser localStorage to save notes persistently without a database.</p>
+                                <div class="flex gap-3 mt-auto">
+                                    <a href="https://hwmetm.github.io/notes-extension/" target="_blank" class="flex-1 text-center bg-neutral-700 hover:bg-neutral-600 text-white text-sm py-2 rounded-lg transition-colors"><i class="fa-solid fa-eye mr-2"></i>Live Demo</a>
+                                    <a href="https://github.com/HWMeTM/notes-extension" target="_blank" class="flex-1 text-center border border-cardBorder hover:border-accent text-gray-300 hover:text-accent text-sm py-2 rounded-lg transition-colors"><i class="fa-brands fa-github mr-2"></i>Code</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project: Active Directory Lab -->
+                        <div class="bg-neutral-800 border border-cardBorder rounded-2xl overflow-hidden group hover:border-accent transition-colors flex flex-col">
+                            <div class="h-40 bg-neutral-700 flex items-center justify-center text-4xl text-neutral-500 group-hover:text-accent transition-colors relative">
+                                <i class="fa-solid fa-network-wired"></i>
+                            </div>
+                            <div class="p-6 flex flex-col flex-grow">
+                                <h4 class="text-white font-semibold mb-2 text-lg">Personal AD Lab Environment</h4>
+                                <p class="text-sm text-gray-400 mb-4 flex-grow">A home lab setup configuring a Windows Server 2019 domain controller to study basic Group Policy Objects and understand enterprise network structures.</p>
+                                <div class="flex gap-3 mt-auto">
+                                    <button disabled class="flex-1 text-center bg-neutral-800 text-gray-500 text-sm py-2 rounded-lg cursor-not-allowed border border-cardBorder">Local Offline Project</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- CONTACT SECTION -->
+                <section id="contact" class="tab-content">
+                    <h2 class="text-3xl text-white font-bold mb-6 flex items-center gap-4">
+                        Contact
+                        <div class="h-1 w-12 bg-accent rounded-full"></div>
+                    </h2>
+
+                    <div class="bg-neutral-800 border border-cardBorder rounded-2xl p-6 md:p-8">
+                        <h3 class="text-xl text-white font-semibold mb-6">Let's Work Together</h3>
+                        <form id="contactForm" class="space-y-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <input type="text" id="senderName" placeholder="Full name" required class="w-full bg-neutral-900 border border-cardBorder rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent transition-colors placeholder-gray-500">
+                                </div>
+                                <div>
+                                    <input type="email" id="senderEmail" placeholder="Email address" required class="w-full bg-neutral-900 border border-cardBorder rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent transition-colors placeholder-gray-500">
+                                </div>
+                            </div>
+                            <div>
+                                <textarea id="senderMessage" placeholder="Your Message" required rows="5" class="w-full bg-neutral-900 border border-cardBorder rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent transition-colors placeholder-gray-500 resize-none"></textarea>
+                            </div>
+                            <div class="flex justify-end">
+                                <button type="submit" class="bg-neutral-700 hover:bg-neutral-600 text-white font-medium py-3 px-8 rounded-xl transition-colors flex items-center gap-2 border border-cardBorder">
+                                    <i class="fa-regular fa-paper-plane text-accent"></i> Send Message
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Tab Switching Logic
+        function switchTab(tabId) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            // Show target tab
+            document.getElementById(tabId).classList.add('active');
+
+            // Update Desktop Nav
+            document.querySelectorAll('nav:not(.md\\:hidden) .nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.getElementById('nav-' + tabId).classList.add('active');
+
+            // Update Mobile Nav
+            document.querySelectorAll('nav.md\\:hidden .nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.getElementById('nav-' + tabId + '-mobile').classList.add('active');
+        }
+
+        // Contact Form Mailto Logic
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('senderName').value;
+            const email = document.getElementById('senderEmail').value;
+            const message = document.getElementById('senderMessage').value;
+            
+            const subject = encodeURIComponent(`Portfolio Contact from ${name}`);
+            const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
+            
+            // Redirects to default email client
+            window.location.href = `mailto:terence.musa.dlamini@gmail.com?subject=${subject}&body=${body}`;
+            
+            // Optional: clear form
+            this.reset();
+        });
+    </script>
+</body>
+</html>
